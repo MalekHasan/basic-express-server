@@ -1,13 +1,14 @@
 module.exports=(req,res,next)=>{
 
-    // req.body.name='fred'
-    const {name}=req.query
-    if (Number.parseInt(name))
-    {
-        console.log(Number.parseInt(name));
-        next(`The ${typeof name} is Not Valid`);
+    // req.query.name='fred'
+    console.log(!Number.parseInt(req.query.name));
+    if (req.query.name && !Number.parseInt(req.query.name))
+    {   
+        next();
+
     }
     else{
-        next();
+        console.log(Number.parseInt(req.query.name));
+        next(`The ${req.query.name} is Not Valid`);
     }
     }
